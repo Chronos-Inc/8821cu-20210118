@@ -1201,6 +1201,33 @@ int proc_get_tx_stat(struct seq_file *m, void *v)
 	return 0;
 }
 
+u32 rtw_cmd_timeout_cnt = 0;
+
+int proc_get_timeout_cnt(struct seq_file *m, void *v)
+{
+	RTW_PRINT_SEL(m, "%d\n", rtw_cmd_timeout_cnt);
+	return 0;
+}
+
+ssize_t proc_set_timeout_cnt(struct file *file, const char __user *buffer, size_t count, loff_t *pos, void *data)
+{
+	char tmp[32];
+
+	if (count < 1)
+		return -EFAULT;
+
+	if (count > sizeof(tmp)) {
+		rtw_warn_on(1);
+		return -EFAULT;
+	}
+
+	if (buffer && !copy_from_user(tmp, buffer, count)) {
+		int num = sscanf(tmp, "%d", &rtw_cmd_timeout_cnt);
+	}
+
+	return count;
+}
+
 int proc_get_fwstate(struct seq_file *m, void *v)
 {
 	struct net_device *dev = m->private;

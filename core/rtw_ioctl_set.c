@@ -886,7 +886,7 @@ int rtw_set_channel_plan(_adapter *adapter, u8 channel_plan)
 
 	if (!REGSTY_REGD_SRC_FROM_OS(regsty))
 		return rtw_set_chplan_cmd(adapter, RTW_CMDF_WAIT_ACK, channel_plan, 1);
-	RTW_WARN("%s(): not applied\n", __func__);
+	RTW_INFO("%s(): not applied\n", __func__);
 	return _SUCCESS;
 }
 
@@ -905,7 +905,7 @@ int rtw_set_country(_adapter *adapter, const char *country_code)
 	if (!REGSTY_REGD_SRC_FROM_OS(regsty))
 		return rtw_set_country_cmd(adapter, RTW_CMDF_WAIT_ACK, country_code, 1);
 #endif
-	RTW_WARN("%s(): not applied\n", __func__);
+	RTW_INFO("%s(): not applied\n", __func__);
 	return _SUCCESS;
 }
 
