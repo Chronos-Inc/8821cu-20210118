@@ -317,7 +317,8 @@ void rtw_acs_select_best_chan(_adapter *adapter)
 
 	_rtw_bss_nums_count(adapter, hal_data->acs.bss_nums);
 	_rtw_phydm_acs_select_best_chan(adapter);
-	rtw_acs_info_dump(RTW_DBGDUMP, adapter);
+	// Chronos: reduce log spam about "best channel" discovery
+	// rtw_acs_info_dump(RTW_DBGDUMP, adapter);
 }
 
 void rtw_acs_start(_adapter *adapter)

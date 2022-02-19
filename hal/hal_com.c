@@ -587,7 +587,7 @@ u8 MRateToHwRate(enum MGN_RATE rate)
 		hw_rate = _MRateToHwRate[rate];
 
 	if (rate != MGN_1M && hw_rate == DESC_RATE1M)
-		RTW_WARN("Invalid rate 0x%x in %s\n", rate, __FUNCTION__);
+		RTW_INFO("Invalid rate 0x%x in %s\n", rate, __FUNCTION__);
 
 	return hw_rate;
 }
@@ -14520,9 +14520,9 @@ void rtw_dump_cur_efuse(PADAPTER padapter)
 
 #ifdef CONFIG_RTW_DEBUG
 	if (hal_data->efuse_file_status == EFUSE_FILE_LOADED)
-		RTW_MAP_DUMP_SEL(RTW_DBGDUMP, "EFUSE FILE", hal_data->efuse_eeprom_data, mapsize);
+		RTW_BUF_DUMP_SEL(_DRV_INFO_, RTW_DBGDUMP, "EFUSE FILE", _TRUE, hal_data->efuse_eeprom_data, mapsize);
 	else
-		RTW_MAP_DUMP_SEL(RTW_DBGDUMP, "HW EFUSE", hal_data->efuse_eeprom_data, mapsize);
+		RTW_BUF_DUMP_SEL(_DRV_INFO_, RTW_DBGDUMP, "HW EFUSE", _TRUE, hal_data->efuse_eeprom_data, mapsize);
 #endif
 }
 

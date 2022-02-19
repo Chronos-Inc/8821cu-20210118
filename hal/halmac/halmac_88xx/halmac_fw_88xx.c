@@ -550,6 +550,7 @@ update_fw_info_88xx(struct halmac_adapter *adapter, u8 *fw_bin)
 		rtk_le16_to_cpu(*((__le16 *)(fw_bin + WLAN_FW_HDR_YEAR)));
 
 	PLTFM_MSG_TRACE("[TRACE]=== FW info ===\n");
+	PLTFM_MSG_TRACE("[TRACE]h2c_ver : %X\n", info->h2c_version);
 	PLTFM_MSG_TRACE("[TRACE]ver : %X\n", info->version);
 	PLTFM_MSG_TRACE("[TRACE]sub-ver : %X\n",
 			info->sub_version);
@@ -1059,7 +1060,7 @@ send_general_info_88xx(struct halmac_adapter *adapter,
 		return HALMAC_RET_FW_NO_SUPPORT;
 
 	if (adapter->fw_ver.h2c_version < 14)
-		PLTFM_MSG_WARN("[WARN]the H2C ver. does not match halmac\n");
+		PLTFM_MSG_TRACE("[WARN]the H2C ver. does not match halmac\n");
 
 	PLTFM_MSG_TRACE("[TRACE]%s ===>\n", __func__);
 

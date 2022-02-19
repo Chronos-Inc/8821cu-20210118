@@ -329,6 +329,8 @@ ssize_t proc_set_write_reg(struct file *file, const char __user *buffer, size_t 
 int proc_get_read_reg(struct seq_file *m, void *v);
 ssize_t proc_set_read_reg(struct file *file, const char __user *buffer, size_t count, loff_t *pos, void *data);
 void dump_drv_cfg(void *sel);
+int proc_get_timeout_cnt(struct seq_file *m, void *v);
+ssize_t proc_set_timeout_cnt(struct file *file, const char __user *buffer, size_t count, loff_t *pos, void *data);
 int proc_get_fwstate(struct seq_file *m, void *v);
 int proc_get_sec_info(struct seq_file *m, void *v);
 int proc_get_mlmext_state(struct seq_file *m, void *v);

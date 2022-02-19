@@ -524,6 +524,7 @@ void rtw_stop_cmd_thread(_adapter *adapter)
 
 thread_return rtw_cmd_thread(thread_context context)
 {
+	extern u32 rtw_cmd_timeout_cnt;
 	u8 ret;
 	struct cmd_obj *pcmd;
 	u8 *pcmdbuf, *prspbuf;
@@ -668,7 +669,8 @@ post_process:
 
 		cmd_process_time = rtw_get_passing_time_ms(cmd_start_time);
 		if (cmd_process_time > 1000) {
-			RTW_INFO(ADPT_FMT" "CMD_FMT" process_time=%d\n", ADPT_ARG(pcmd->padapter), CMD_ARG(pcmd), cmd_process_time);
+			RTW_WARN(ADPT_FMT" "CMD_FMT" process_time=%d\n", ADPT_ARG(pcmd->padapter), CMD_ARG(pcmd), cmd_process_time);
+			if (cmd_process_time > 2000) rtw_cmd_timeout_cnt++;
 			if (0)
 				rtw_warn_on(1);
 		}
